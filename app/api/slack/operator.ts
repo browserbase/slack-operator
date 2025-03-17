@@ -87,7 +87,7 @@ Return a URL that would be most effective for achieving this goal.`,
     abortSignal: AbortSignal.timeout(5000),
     messages: [message],
   }).catch((error) => {
-    console.error("Error generating starting URL:", error);
+    console.error("OpenAI timeout when generating starting URL, falling back to Google");
     return {
       object: {
         url: "https://www.google.com",
@@ -226,6 +226,11 @@ export async function runAgentLoop(
         console.log(`🧠 Reasoning: ${reasoning.summary[0].text}`);
       }
     }
+
+    if (!slack) {
+        const action = (currentStep.output.find((item: any) => item.type === "computer_call") as ComputerToolCall)?.action;
+        console.log(`🖥️  Action: ${JSON.stringify(action)}`);
+    }
     // Perform the last step
     const nextOutput = await execute(computer, agent, currentStep);
 
@@ -249,8 +254,6 @@ export async function runAgentLoop(
           ),
           filename: "screenshot.png",
         });
-      } else {
-        console.log(`🧠 Reasoning: ${reasoning.summary[0].text}`);
       }
     }
 
@@ -268,7 +271,6 @@ export async function runAgentLoop(
       (item: any) => item.type === "message"
     ) as Message | undefined;
     if (message) {
-      console.log(`🤖 Operator: ${message.content[0].text}`);
       if (slack && channel && threadTs) {
         await saveState(sessionId, {
           goal: goal,

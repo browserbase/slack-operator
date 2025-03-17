@@ -55,7 +55,9 @@ export async function POST(req: Request) {
     });
 
     const computer = new BrowserbaseBrowser(1024, 768, session.id);
-    const agent = new Agent("computer-use-preview", computer, true);
+
+    // Set the last argument to true to enable more verbose logging
+    const agent = new Agent("computer-use-preview", computer, false);
 
     // Start the agent loop in the background
     const result = await runAgentLoop(
