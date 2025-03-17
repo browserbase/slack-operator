@@ -64,7 +64,7 @@ export async function POST(req: Request) {
     const agent = new Agent("computer-use-preview", computer, false);
 
     // Start the agent loop in the background
-    await runAgentLoop(
+    const result = await runAgentLoop(
       computer,
       agent,
       body.goal,
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
       undefined
     );
 
-    return NextResponse.json({ completed: true });
+    return NextResponse.json({ result });
   } catch (error) {
     console.error("Error handling demo request:", error);
     return NextResponse.json(

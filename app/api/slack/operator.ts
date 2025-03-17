@@ -295,6 +295,7 @@ export async function runAgentLoop(
         });
       } else {
         console.log(`🤖 Operator: ${message.content[0].text}`);
+        return currentStep;
       }
       currentStep = null;
     }
