@@ -72,7 +72,13 @@ Note: The demo endpoint does not support follow up questions with the agent. The
 ### 1. Deploy to Vercel
 1. [Click here](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator&env=BROWSERBASE_API_KEY,BROWSERBASE_PROJECT_ID,OPENAI_API_KEY&envDescription=You'll%20need%20these%20variables%20to%20deploy%20this.%20To%20integrate%20Slack%2C%20you'll%20also%20need%20SLACK_BOT_TOKEN%2C%20SLACK_SIGNING_SECRET%2C%20and%20SLACK_BOT_ID.%20&envLink=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator%23deploying-to-production) to create a pre-configured Vercel project
 2. Once it's deployed, you'll need to enable [blob storage](https://vercel.com/docs/vercel-blob) and [fluid compute](https://vercel.com/docs/functions/fluid-compute) to enable state persistence and long-running tasks.
-3. Once Slack integration is enabled, you'll need to configure the environment variables as described in the next steps.
+3. You can test it's working by sending a POST request to `/api/demo` with your goal.
+   ```bash
+   curl -X POST https://YOUR_VERCEL_URL/api/demo \
+     -H "Content-Type: application/json" \
+     -d '{"goal": "What is the weather in San Francisco?"}'
+   ```
+4. Once Slack integration is set up, you'll need to configure the environment variables in Vercel as described in the next steps.
 
 ### 2. Create Slack App
 1. Go to https://api.slack.com/apps and click "Create New App"

@@ -6,8 +6,9 @@ import { waitUntil } from '@vercel/functions';
 import { BrowserbaseBrowser } from "../agent/browserbase";
 import { Agent } from "../agent/agent";
 
-// Set route timeout to 800 seconds. This requires the use of Vercel's Fluid Compute!
-export const maxDuration = 800;
+// Set the default to 60 seconds. This is not enough!
+// Once you enable Fluid Compute, you can can set this to 800 seconds.
+export const maxDuration = 60;
 
 // Initialize clients
 const validateEnvironment = () => {
@@ -164,7 +165,7 @@ const createTimeoutPromise = (channel: string, threadTs: string) => {
     await slack.chat.postMessage({
       channel: channel,
       thread_ts: threadTs,
-      text: "⚠️ Processing timed out after 13 minutes. Please try again or check the session status.",
+      text: "⚠️ Function timed out while working. Please enable Fluid Compute and maxDuration in slack/route.ts to 800 seconds.",
     });
     throw error;
   });

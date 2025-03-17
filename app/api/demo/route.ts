@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     const agent = new Agent("computer-use-preview", computer, false);
 
     // Start the agent loop in the background
-    const result = await runAgentLoop(
+    await runAgentLoop(
       computer,
       agent,
       body.goal,
