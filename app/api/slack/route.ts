@@ -82,7 +82,7 @@ const handleNewMessage = async (event: any) => {
     !event.thread_ts &&
     !event.bot_id &&
     event.user !== process.env.SLACK_BOT_USER_ID &&
-    event.text.includes(`<@${process.env.SLACK_BOT_USER_ID}>`)
+    event?.text?.includes(`<@${process.env.SLACK_BOT_USER_ID}>`)
   ) {
     // Check for existing sessions
     const query = `user_metadata['messageTs']:'${event.ts?.replace(/[^\w\s-]/g, "")}'`;
