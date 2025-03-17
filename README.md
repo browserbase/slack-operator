@@ -70,7 +70,7 @@ Note: The demo endpoint does not support follow up questions with the agent. The
 ## Deploying to Production
 
 ### 1. Deploy to Vercel
-1. [Click here](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator&env=BROWSERBASE_API_KEY,BROWSERBASE_PROJECT_ID,OPENAI_API_KEY&envDescription=You'll%20need%20these%20variables%20to%20deploy%20this.%20To%20integrate%20Slack%2C%20you'll%20also%20need%20SLACK_BOT_TOKEN%2C%20SLACK_SIGNING_SECRET%2C%20and%20SLACK_BOT_ID.%20&envLink=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator%23deploying-to-production) to create a pre-configured Vercel project
+1. [Click here](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator&env=BROWSERBASE_API_KEY,BROWSERBASE_PROJECT_ID,OPENAI_API_KEY&envDescription=You'll%20need%20these%20variables%20to%20deploy%20this.%20To%20integrate%20Slack%2C%20you'll%20also%20need%20SLACK_BOT_TOKEN%2C%20SLACK_SIGNING_SECRET%2C%20and%20SLACK_BOT_USER_ID.%20&envLink=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator%23deploying-to-production) to create a pre-configured Vercel project
 2. Once it's deployed, you'll need to enable [blob storage](https://vercel.com/docs/vercel-blob) and [fluid compute](https://vercel.com/docs/functions/fluid-compute) to enable state persistence and long-running tasks. Make sure to update slack/route.ts 
 3. You can test it's working by sending a POST request to `/api/demo` with your goal.
    ```bash
@@ -87,7 +87,7 @@ Note: The demo endpoint does not support follow up questions with the agent. The
 4. Replace `https://your-vercel-deployment-url` in the manifest with your actual Vercel deployment URL
 5. Review and create the app
 
-### 3. Install App to Workspace
+### 3. Install Slack App to Workspace
 1. Go to "Install App" in the sidebar
 2. Click "Install to Workspace" and authorize the app
 
@@ -96,8 +96,14 @@ Note: The demo endpoint does not support follow up questions with the agent. The
 2. Go to "OAuth & Permissions" and copy the "Bot User OAuth Token"
 3. In your Vercel project settings, add these environment variables:
    - `SLACK_BOT_TOKEN`: Your Bot User OAuth Token (starts with xoxb-)
+      - Go to "OAuth & Permissions" and copy the "Bot User OAuth Token"
    - `SLACK_SIGNING_SECRET`: Your Signing Secret
-   - `SLACK_BOT_ID`: Your Bot User ID (starts with U)
+      - Go to your Slack App's "Basic Information" page
+   - `SLACK_BOT_USER_ID`: Your Bot User ID (starts with U)
+      - You can get that from the Slack API. You'll need the user_id from the response
+      ```
+      curl -X POST "https://slack.com/api/auth.test" -H "Authorization: Bearer xoxb-your-slack-bot-token" 
+      ```
    - `BROWSERBASE_API_KEY`: Your Browserbase API Key
    - `BROWSERBASE_PROJECT_ID`: Your Browserbase Project ID
    - `OPENAI_API_KEY`: Your OpenAI API Key

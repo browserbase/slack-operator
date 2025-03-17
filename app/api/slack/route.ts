@@ -81,8 +81,8 @@ const handleNewMessage = async (event: any) => {
   if (
     !event.thread_ts &&
     !event.bot_id &&
-    event.user !== process.env.SLACK_BOT_ID &&
-    event.text.includes(`<@${process.env.SLACK_BOT_ID}>`)
+    event.user !== process.env.SLACK_BOT_USER_ID &&
+    event.text.includes(`<@${process.env.SLACK_BOT_USER_ID}>`)
   ) {
     // Check for existing sessions
     const query = `user_metadata['messageTs']:'${event.ts?.replace(/[^\w\s-]/g, "")}'`;
@@ -94,7 +94,7 @@ const handleNewMessage = async (event: any) => {
     }
 
     const goal = event.text
-      .replace(`<@${process.env.SLACK_BOT_ID}>`, "")
+      .replace(`<@${process.env.SLACK_BOT_USER_ID}>`, "")
       .trim();
 
     await createSession(event.channel, event.ts, event.user, goal);
@@ -102,7 +102,7 @@ const handleNewMessage = async (event: any) => {
 };
 
 const handleThreadReply = async (event: any) => {
-  if (!event.thread_ts || event.bot_id || event.user === process.env.SLACK_BOT_ID) {
+  if (!event.thread_ts || event.bot_id || event.user === process.env.SLACK_BOT_USER_ID) {
     return;
   }
 
