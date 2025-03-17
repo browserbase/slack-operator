@@ -33,11 +33,6 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log(
-      "Intl.DateTimeFormat().resolvedOptions().timeZone",
-      Intl.DateTimeFormat().resolvedOptions().timeZone
-    );
-
     // Get the closest browser region based on the server's timezone
     const region = getClosestRegion(
       Intl.DateTimeFormat().resolvedOptions().timeZone

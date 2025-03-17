@@ -85,6 +85,13 @@ Return a URL that would be most effective for achieving this goal.`,
       reasoning: z.string(),
     }),
     messages: [message],
+  }).catch((error) => {
+    console.error("Error generating starting URL:", error);
+    return {
+      object: {
+        url: "https://www.google.com",
+      },
+    };
   });
 
   return result.object;
