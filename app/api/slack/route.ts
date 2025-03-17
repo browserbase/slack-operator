@@ -66,7 +66,7 @@ const createSession = async (channel: string, ts: string, userId: string, goal: 
   );
   const agent = new Agent("computer-use-preview", computer, false);
 
-  if (maxDuration === 60) {
+  if (maxDuration <= 60) {
     await slack.chat.postMessage({
       channel: channel,
       text: `⚠️  The default timeout is 60 seconds. Please enable Fluid Compute and update the timeout in slack/route.ts to 800 seconds.`,
