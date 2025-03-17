@@ -1,0 +1,45 @@
+{
+  "display_information": {
+    "name": "Slack Operator",
+    "description": "A Computer Use Slack bot built with Next.js",
+    "background_color": "#4A154B"
+  },
+  "features": {
+    "bot_user": {
+      "display_name": "Slack Operator",
+      "always_online": true
+    }
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "chat:write",
+        "app_mentions:read",
+        "channels:history",
+        "channels:read",
+        "groups:history",
+        "groups:read",
+        "im:history",
+        "im:read",
+        "files:write"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "request_url": "https://your-vercel-deployment-url/api/slack",
+      "bot_events": [
+        "message.channels",
+        "message.groups",
+        "message.im"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": true,
+      "request_url": "https://your-vercel-deployment-url/api/slack"
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  }
+} 

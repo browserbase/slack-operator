@@ -1,0 +1,35 @@
+{
+  "name": "slack-operator",
+  "version": "1.0.0",
+  "description": "A TypeScript-based Slack Operator bot built with Next.js and deployed on Vercel",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^1.1.12",
+    "@browserbasehq/sdk": "^2.3.0",
+    "@slack/bolt": "^3.17.1",
+    "@slack/web-api": "^6.11.2",
+    "@vercel/blob": "^0.27.2",
+    "@vercel/functions": "^2.0.0",
+    "ai": "^4.1.41",
+    "axios": "^1.8.3",
+    "axios-retry": "^4.5.0",
+    "dotenv": "^16.4.7",
+    "next": "^14.1.0",
+    "openai": "^4.87.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "typescript": "^5.3.3"
+  }
+}
