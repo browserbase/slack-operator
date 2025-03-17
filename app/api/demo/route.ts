@@ -5,6 +5,10 @@ import { Agent } from "../agent/agent";
 import { BrowserbaseBrowser } from "../agent/browserbase";
 import { getClosestRegion } from "./util";
 
+// Set the default to 60 seconds. This is not enough!
+// Once you enable Fluid Compute, you can can set this to 800 seconds.
+export const maxDuration = 60;
+
 // Initialize Browserbase client
 const validateEnvironment = () => {
   if (!process.env.BROWSERBASE_API_KEY) {
