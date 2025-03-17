@@ -84,6 +84,7 @@ Return a URL that would be most effective for achieving this goal.`,
       url: z.string().url(),
       reasoning: z.string(),
     }),
+    abortSignal: AbortSignal.timeout(5000),
     messages: [message],
   }).catch((error) => {
     console.error("Error generating starting URL:", error);
