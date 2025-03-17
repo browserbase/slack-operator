@@ -71,7 +71,7 @@ Note: The demo endpoint does not support follow up questions with the agent. The
 
 ### 1. Deploy to Vercel
 1. [Click here](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator&env=BROWSERBASE_API_KEY,BROWSERBASE_PROJECT_ID,OPENAI_API_KEY&envDescription=You'll%20need%20these%20variables%20to%20deploy%20this.%20To%20integrate%20Slack%2C%20you'll%20also%20need%20SLACK_BOT_TOKEN%2C%20SLACK_SIGNING_SECRET%2C%20and%20SLACK_BOT_ID.%20&envLink=https%3A%2F%2Fgithub.com%2Fbrowserbase%2Fslack-operator%23deploying-to-production) to create a pre-configured Vercel project
-2. Once it's deployed, you'll need to enable [blob storage](https://vercel.com/docs/vercel-blob) and [fluid compute](https://vercel.com/docs/functions/fluid-compute) to enable state persistence and long-running tasks.
+2. Once it's deployed, you'll need to enable [blob storage](https://vercel.com/docs/vercel-blob) and [fluid compute](https://vercel.com/docs/functions/fluid-compute) to enable state persistence and long-running tasks. Make sure to update slack/route.ts 
 3. You can test it's working by sending a POST request to `/api/demo` with your goal.
    ```bash
    curl -X POST https://YOUR_VERCEL_URL/api/demo \
@@ -101,4 +101,5 @@ Note: The demo endpoint does not support follow up questions with the agent. The
    - `BROWSERBASE_API_KEY`: Your Browserbase API Key
    - `BROWSERBASE_PROJECT_ID`: Your Browserbase Project ID
    - `OPENAI_API_KEY`: Your OpenAI API Key
-4. Redeploy your Vercel project for the changes to take effect
+4. Make sure to enable Fluid Compute and update the timeout in `slack/route.ts` to 800 seconds! Otherwise the agent will timeout while working.
+5. Redeploy your Vercel project for the changes to take effect
