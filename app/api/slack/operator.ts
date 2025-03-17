@@ -171,12 +171,12 @@ export async function runAgentLoop(
     if (slack && channel && threadTs) {
       await slack.chat.postMessage({
         channel: channel,
-        text: `🤖 Operator: Starting up to complete the task!\n\n You can follow along at https://www.browserbase.com/sessions/${sessionId}`,
+        text: `🤖 Operator: Starting up to complete the task!\n\nYou can follow along at https://www.browserbase.com/sessions/${sessionId}`,
         thread_ts: threadTs,
       });
     } else {
       console.log(
-        `🤖 Operator: Starting up to complete the task!\n\n You can follow along at https://www.browserbase.com/sessions/${sessionId}`
+        `🤖 Operator: Starting up to complete the task! You can follow along at https://www.browserbase.com/sessions/${sessionId}`
       );
     }
     await computer.connect();
