@@ -28,7 +28,7 @@ Slack Operator is an Computer-Use Agent that can perform web-based tasks through
    - When deployed to Vercel, the agent maintains state between interactions, allowing for follow-up questions and multi-step tasks
 
 4. **State Management**:
-   - For Slack interactions, the agent maintains conversation state to support continuous interactions
+   - For Slack interactions, the agent maintains conversation state using Vercel's blob storage to support continuous interactions
    - Each session uses a dedicated browser instance that persists throughout the task
 
 5. **Regional Optimization**:
@@ -45,7 +45,7 @@ You can test the functionality directly using the demo API endpoint without sett
    npm install
    ```
 
-3. Copy `.env.local` and add your API keys. You can get a Browserbase API key and project ID from the [Browserbase Dashboard](https://www.browserbase.com/overview).
+3. Copy `.env.example` to `.env.local` and add your API keys. You can get a Browserbase API key and project ID from the [Browserbase Dashboard](https://www.browserbase.com/overview).
    ```
    BROWSERBASE_API_KEY=your-browserbase-api-key
    BROWSERBASE_PROJECT_ID=your-browserbase-project-id
